@@ -2,11 +2,9 @@ import { IDataWeather, ILocationData, IWeather, IUnitedStatesWeather } from "@/I
 
 
 export const getWeatherUnitedStates = async (searchValue: string) => {
-    let stateCode = "";
-    let limit = 1;
-    let countryCode = "US";
-
-    const promise = await fetch(`https://api.openweathermap.org/geo/1.0/direct?q=${searchValue},${stateCode},${countryCode}&limit=${limit}&appid=${process.env.NEXT_PUBLIC_WEATHER}`);
+    let countryLocation = "US";
+    let stateLocation = "";
+    const promise = await fetch(`https://api.openweathermap.org/geo/1.0/direct?q=${searchValue},${stateLocation},${countryLocation}&limit=1&appid=${process.env.NEXT_PUBLIC_WEATHER}`);
     const data: IUnitedStatesWeather[] = await promise.json();
     return data;
 }

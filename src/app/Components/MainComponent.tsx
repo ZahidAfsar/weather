@@ -34,11 +34,11 @@ import { useEffect, useState } from "react";
 
 
 export default function MainComponent() {
-  const [date, setDate] = useState<string>("March 25, 2024");
-  const [time, setTime] = useState<string>("2:20 PM PST");
-
-  const [searchValue, setSearchValue] = useState<string>("");
+  const [date, setDate] = useState<string>("March 30, 2024");
+  const [time, setTime] = useState<string>("1:23 AM PST");
   const [citySearch, setCitySearch] = useState<string>("");
+  const [searchValue, setSearchValue] = useState<string>("");
+
 
   const handleSearch = () => {
     if (searchValue) {
@@ -55,12 +55,11 @@ export default function MainComponent() {
       }
     }
   };
-
-  const [lat, setLat] = useState<number>(37.961632);
-  const [long, setLong] = useState<number>(-121.275604);
   const [weatherData, setWeatherData] = useState<IWeather>();
   const [locationData, setLocationData] = useState<ILocationData>();
   const [fivedayweatherdata, setfivedayweatherdata] = useState<IDataWeather>();
+  const [lat, setLat] = useState<number>(37.961632);
+  const [long, setLong] = useState<number>(-121.275604);
 
   const [firstDayDate, setfirstDayDate] = useState<string>(""),
     [firstDayWeatherIcon, setfirstDayWeatherIcon] = useState<any>(faSun);
@@ -114,8 +113,6 @@ export default function MainComponent() {
   useEffect(() => {
     const getData = async () => {
       const data = await getWeatherUnitedStates(citySearch);
-      // setLat(data[0].lat);
-      // setLong(data[0].lon);
       if (data && data.length > 0) {
         setLat(data[0].lat);
         setLong(data[0].lon);

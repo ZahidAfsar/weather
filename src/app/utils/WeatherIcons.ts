@@ -9,8 +9,8 @@ import {
   faSmog,
 } from "@fortawesome/free-solid-svg-icons";
 
-export const WeatherIcon = (weather: string) => {
-  switch (weather) {
+export const WeatherIcon = (icon: string) => {
+  switch (icon) {
     case "Clear":
       return faSun;
     case "Clouds":
