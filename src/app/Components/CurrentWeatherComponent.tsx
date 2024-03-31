@@ -38,7 +38,7 @@ const CurrentWeatherComponent = (props: ICurrentWeather) => {
   return (
     <div className="pt-20 ps-2 w-full">
       <div className="bg-blue-800 flex justify-between items-center rounded-t-md h-14 p-4">
-        <h2 className="font-Nunito font-semibold text-2xl">
+        <h2 className="font-Nunito textShadow font-semibold text-2xl">
           {props.city}, {props.state}
         </h2>
         <button onClick={handleClickHeart}>
@@ -46,7 +46,7 @@ const CurrentWeatherComponent = (props: ICurrentWeather) => {
         </button>
       </div>
 
-      <div className="bgTransparent w-full rounded-b-md 2xl:py-4">
+      <div className="bgDivColor w-full rounded-b-md 2xl:py-4">
         <div className="flex justify-evenly items-center py-14 2xl:py-16 px-2">
           <FontAwesomeIcon icon={props.currentIcon} className="text-7xl" />
           <p className="font-Nunito text-7xl ">{props.currentTemp} °F</p>

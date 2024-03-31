@@ -27,10 +27,14 @@
 }
 
 
-.bgTransparent {
+.bgDivColor {
   background-color: #4164A8;
   backdrop-filter: blur(10px);
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+}
+
+.textShadow{
+  text-shadow: 1px 1px 2px black;
 }
 
 .search-container {

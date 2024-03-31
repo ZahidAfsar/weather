@@ -10,7 +10,7 @@ import {
 import {
     formatDate,
     getDates,
-    hourlyForecast,
+    ForecastWeatherData,
   } from ".././utils/CurrentDate";
 import {
   IDataWeather,
@@ -21,7 +21,7 @@ import { StateNames } from ".././utils/States";
 import ForecastFiveComponent from "./ForecastFiveComponent";
 import { Button, Modal } from "flowbite-react";
 
-import { faSun } from "@fortawesome/free-solid-svg-icons";
+import { faCircleXmark, faSun } from "@fortawesome/free-solid-svg-icons";
 import {
   getLocalStorage,
   removeLocalStorage,
@@ -29,7 +29,7 @@ import {
 import CurrentWeatherComponent from "./CurrentWeatherComponent";
 import SearchBarComponent from "../Components/SearchBarComponent";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMinusCircle } from "@fortawesome/free-solid-svg-icons";
+import { FaCircleXmark } from "react-icons/fa6";
 import { useEffect, useState } from "react";
 
 
@@ -114,8 +114,14 @@ export default function MainComponent() {
   useEffect(() => {
     const getData = async () => {
       const data = await getWeatherUnitedStates(citySearch);
-      setLat(data[0].lat);
-      setLong(data[0].lon);
+      // setLat(data[0].lat);
+      // setLong(data[0].lon);
+      if (data && data.length > 0) {
+        setLat(data[0].lat);
+        setLong(data[0].lon);
+      } else {
+        window.alert("If You want to search a city outside of US. Search a city using City Name,Country Initials format. EX. Shibuya,JP ");
+      }
     };
     getData();
   }, [citySearch]);
@@ -159,7 +165,7 @@ export default function MainComponent() {
         setfifthDayDate,
       ];
 
-      const futureArr = hourlyForecast(fivedayweatherdata, dateArray);
+      const fiveNextDaysArr = ForecastWeatherData(fivedayweatherdata, dateArray);
       const setIconSetter = [
         setfirstDayWeatherIcon,
         setsecondDayWeatherIcon,
@@ -184,9 +190,9 @@ export default function MainComponent() {
 
       for (let i = 0; i < setDateSetter.length; i++) {
         setDateSetter[i](formatDate(dateArray[i]));
-        setIconSetter[i](WeatherIcon(futureArr[i]));
-        setHighSetter[i](futureArr[i + 5]);
-        setLowSetter[i](futureArr[i + 10]);
+        setIconSetter[i](WeatherIcon(fiveNextDaysArr[i]));
+        setHighSetter[i](fiveNextDaysArr[i + 5]);
+        setLowSetter[i](fiveNextDaysArr[i + 10]);
       }
     }
   }, [weatherData, fivedayweatherdata]);
@@ -221,10 +227,10 @@ export default function MainComponent() {
       />
       <div className="grid">
         <div className="pt-16 px-12 pb-10">
-          <h1 className="flex font-Nunito justify-center text-4xl font-bold pb-4">
+          <h1 className="flex font-Nunito justify-center textShadow text-4xl font-bold pb-4">
             Weather Forecast
           </h1>
-          <p className="flex font-Nunito justify-center font-light text-xl tracking-wide pb-4">
+          <p className="flex font-Nunito justify-center textShadow font-light text-xl tracking-wide pb-4">
             {date}
             <span className="tracking-widest"> | </span>
             {time}
@@ -254,7 +260,7 @@ export default function MainComponent() {
                         {location}
                       </span>
                       <FontAwesomeIcon
-                        icon={faMinusCircle}
+                        icon={faCircleXmark}
                         className="cursor-pointer text-xl text-black hover:text-peach"
                         onClick={() => removeFavorite(location)}
                       />

@@ -18,7 +18,7 @@ export const getDates = (currentWeatherData: IWeather) => {
 }
 
 const currentConditionsWeather = (arr: string[]) => {
-    let count = 1, max = 0, el;
+    let count = 1, maxLimit = 0, element;
 
     for (let i = 1; i < arr.length; ++i) {
         if (arr[i] === arr[i - 1]) {
@@ -26,13 +26,13 @@ const currentConditionsWeather = (arr: string[]) => {
         } else {
             count = 1;
         }
-        if (count > max) {
-            max = count;
-            el = arr[i];
+        if (count > maxLimit) {
+            maxLimit = count;
+            element = arr[i];
         }
     }
 
-    return el || '';
+    return element || '';
 }
 
 const pushDataToDay = (data: IDataWeather, i: number, highArr: number[], lowArr: number[], weatherArr: string[]) => {
@@ -41,7 +41,7 @@ const pushDataToDay = (data: IDataWeather, i: number, highArr: number[], lowArr:
     weatherArr.push(data.list[i].weather[0].main);
 }
 
-export const hourlyForecast = (hourlyWeatherData: IDataWeather, dateTimeFiveDays: Date[]) => {
+export const ForecastWeatherData = (hourlyWeatherData: IDataWeather, dateTimeFiveDays: Date[]) => {
   if (!hourlyWeatherData.list || !Array.isArray(hourlyWeatherData.list)) {
     console.error('Current weather data is not available');
     return [];

@@ -3,7 +3,7 @@ import { IDataWeather, ILocationData, IWeather, IUnitedStatesWeather } from "@/I
 
 export const getWeatherUnitedStates = async (searchValue: string) => {
     let stateCode = "";
-    let limit = 5;
+    let limit = 1;
     let countryCode = "US";
 
     const promise = await fetch(`https://api.openweathermap.org/geo/1.0/direct?q=${searchValue},${stateCode},${countryCode}&limit=${limit}&appid=${process.env.NEXT_PUBLIC_WEATHER}`);
@@ -19,7 +19,7 @@ export const getCurrentWeather = async (userLat: number, userLon: number) => {
 
 
 export const getWeatherReverse = async (userLat: number, userLon: number) => {
-    const promise = await fetch(`https://api.openweathermap.org/geo/1.0/reverse?lat=${userLat}&lon=${userLon}&limit=5&appid=${process.env.NEXT_PUBLIC_WEATHER}`)
+    const promise = await fetch(`https://api.openweathermap.org/geo/1.0/reverse?lat=${userLat}&lon=${userLon}&limit=1&appid=${process.env.NEXT_PUBLIC_WEATHER}`)
     const data: ILocationData = await promise.json();
     return data;
 };

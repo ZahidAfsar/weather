@@ -5,9 +5,9 @@ import React from "react";
 const ForecastFiveComponent = (props: INextFiveDays) => {
   return (
     <div className="pt-4 ps-2 w-full">
-      <div className="bgTransparent rounded-md 2xl:py-5">
+      <div className="bgDivColor rounded-md 2xl:py-5">
         <div className="h-14 p-8">
-          <h2 className="font-Nunito text-center font-semibold text-2xl">
+          <h2 className="font-Nunito text-center textShadow font-semibold text-2xl">
             5 Day Forecast
           </h2>
         </div>
