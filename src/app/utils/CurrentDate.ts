@@ -62,8 +62,8 @@ export const ForecastWeatherData = (hourlyWeatherData: IDataWeather, dateTimeFiv
       return allArraysSpread;
   }
 
-const pushDataToDay = (data: IDataWeather, i: number, highArr: number[], lowArr: number[], weatherArr: string[]) => {
-    highArr.push(data.list[i].main.temp_max);
-    lowArr.push(data.list[i].main.temp_min);
-    weatherArr.push(data.list[i].weather[0].main);
+const pushDataToDay = (data: IDataWeather, i: number, highTempArray: number[], lowTempArray: number[], weatherTempsArray: string[]) => {
+    highTempArray.push(data.list[i].main.temp_max);
+    lowTempArray.push(data.list[i].main.temp_min);
+    weatherTempsArray.push(data.list[i].weather[0].main);
 }

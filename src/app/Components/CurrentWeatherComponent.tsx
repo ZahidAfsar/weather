@@ -12,26 +12,24 @@ import {
 } from "../utils/localStorage";
 
 const CurrentWeatherComponent = (props: ICurrentWeather) => {
-  const [heartIcon, setHeartIcon] = useState<any>();
+  const [favHeart, setfavHeart] = useState<any>();
 
-  const handleClickHeart = () => {
+  const handleHeartFill = () => {
     const favorites = getLocalStorage();
-
     if (favorites.includes(`${props.city}, ${props.state}`)) {
       removeLocalStorage(`${props.city}, ${props.state}`);
-      setHeartIcon(faHeart);
+      setfavHeart(faHeart);
     } else {
       savLocalStorage(`${props.city}, ${props.state}`);
-      setHeartIcon(faSolidHeart);
+      setfavHeart(faSolidHeart);
     }
   };
-
   useEffect(() => {
     const favorites = getLocalStorage();
     if (favorites.includes(`${props.city}, ${props.state}`)) {
-      setHeartIcon(faSolidHeart);
+      setfavHeart(faSolidHeart);
     } else {
-      setHeartIcon(faHeart);
+      setfavHeart(faHeart);
     }
   });
 
@@ -41,8 +39,8 @@ const CurrentWeatherComponent = (props: ICurrentWeather) => {
         <h2 className="font-Nunito textShadow font-semibold text-2xl">
           {props.city}, {props.state}
         </h2>
-        <button onClick={handleClickHeart}>
-          <FontAwesomeIcon icon={heartIcon} className="text-2xl" />
+        <button onClick={handleHeartFill}>
+          <FontAwesomeIcon icon={favHeart} className="text-2xl" />
         </button>
       </div>
 
